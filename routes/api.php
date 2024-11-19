@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\BudgetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +31,9 @@ Route::group(['middleware'=>'api','prefix'=>'auth'], function($Router){
     Route::get('/user/{id}', [AuthController::class, 'viewUser']);      
     Route::put('/user/{id}', [AuthController::class, 'updateUser']);     
     Route::delete('/user/{id}', [AuthController::class, 'deleteUser']);
-
 });
 
+    
 
 Route::middleware(['auth:api'])->group(function () {
     Route::get('/campaigns', [CampaignController::class, 'index']);
@@ -40,4 +41,10 @@ Route::middleware(['auth:api'])->group(function () {
     Route::post('/create', [CampaignController::class, 'store']);
     Route::put('/campaigns/{id}', [CampaignController::class, 'update']);
     Route::delete('/campaigns/{id}', [CampaignController::class, 'destroy']);
+    Route::get('/budget-sums', [BudgetController::class, 'getBudgetSums']);
+    Route::get('/records-by-month', [BudgetController::class, 'getRecordsByMonth']);
+    
 });
+
+
+
