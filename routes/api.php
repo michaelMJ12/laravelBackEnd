@@ -37,13 +37,12 @@ Route::group(['middleware'=>'api','prefix'=>'auth'], function($Router){
 
 Route::middleware(['auth:api'])->group(function () {
     Route::get('/campaigns', [CampaignController::class, 'index']);
+    Route::get('/budget-sums', [BudgetController::class, 'getBudgetSums']);
+    Route::get('/records-by-month', [BudgetController::class, 'getRecordsByMonth'])->name('records.by.month');
     Route::get('/campaigns/{id}', [CampaignController::class, 'show']);
     Route::post('/create', [CampaignController::class, 'store']);
     Route::put('/campaigns/{id}', [CampaignController::class, 'update']);
     Route::delete('/campaigns/{id}', [CampaignController::class, 'destroy']);
-    Route::get('/budget-sums', [BudgetController::class, 'getBudgetSums']);
-    Route::get('/records-by-month', [BudgetController::class, 'getRecordsByMonth']);
-    
 });
 
 

@@ -8,6 +8,13 @@ use DB;
 
 class BudgetController extends Controller
 {
+
+     // Ensure the user is authorized before performing certain actions
+    public function __construct()
+    {
+        $this->middleware('auth:api'); // Add authentication middleware for API routes
+    }
+
     // API to get sum of total_budget and daily_budget
     public function getBudgetSums()
     {
